@@ -1,0 +1,13 @@
+﻿<Window x:Class="Yelp_GUI.Views.BusinessMap"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF" 
+        xmlns:local="clr-namespace:Yelp_GUI.Views"
+        mc:Ignorable="d"
+        Title="BusinessMap" Height="450" Width="800">
+    <Grid>
+        <m:Map x:Name="GlobalMap" Mode="AerialWithLabels" CredentialsProvider="lx3029bhXCGavoSouhxs~YmEHmZhhfOs6VjjnqMK2JA~AjOPfDJtwbgD7ISw1XPsLd-zYu-Wb59WuiFZHM1QDXqsJWE6ttTvFu-YdfPn307J" />
+    </Grid>
+</Window>

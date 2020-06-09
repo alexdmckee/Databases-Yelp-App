@@ -1,0 +1,80 @@
+﻿<Page x:Class="Yelp_GUI.Views.UserInformation"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Yelp_GUI.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="651" d:DesignWidth="1246"
+      Title="Page1">
+
+    <Grid Background="#FFE5E5E5">
+        <GroupBox Header="Set Current User" HorizontalAlignment="Right" Height="365" VerticalAlignment="Bottom" Width="220" Margin="0,0,1016,266">
+            <Grid HorizontalAlignment="Left" Height="150" Margin="0,0,-2,-13" VerticalAlignment="Top" Width="210">
+                <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" VerticalAlignment="Top" Width="209" TextChanged="EnteredUsername"/>
+                <ListBox x:Name="ListOfUsers" Margin="0,0,1,-193" Height="320" VerticalAlignment="Bottom" SelectionChanged="SelectedUser"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Friends" HorizontalAlignment="Left" Height="256" Margin="10,380,0,0" VerticalAlignment="Top" Width="525">
+            <Grid HorizontalAlignment="Left" Width="515" Margin="0,0,-2,-2" Height="235" VerticalAlignment="Top">
+                <DataGrid x:Name="Friends" HorizontalAlignment="Left" Height="215" Margin="10,10,0,0" VerticalAlignment="Top" Width="495" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Width="135" Binding ="{Binding Path=Name}"/>
+                        <DataGridTextColumn Header="Tip Likes" Width="120" Binding ="{Binding Path=TotalTipLikes}"/>
+                        <DataGridTextColumn Header="Avg. Stars" Width="120" Binding ="{Binding Path=AvgStars}"/>
+                        <DataGridTextColumn Header="Yelping Since" Width="120" Binding ="{Binding Path=YelpingSince}"/>
+                    </DataGrid.Columns> 
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="User Information" Height="365" Margin="0,0,711,266" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="300">
+            <Grid HorizontalAlignment="Left" Height="355" Margin="0,0,-2,-3" VerticalAlignment="Top" Width="290">
+                <Label Content="Name:" Margin="10,10,234,0" VerticalContentAlignment="Center" Height="28" VerticalAlignment="Top"/>
+                <Label Content="Stars:" Margin="10,43,239,0" VerticalContentAlignment="Center" Height="28" VerticalAlignment="Top"/>
+                <Label Content="Fans:" Margin="145,43,104,0" VerticalContentAlignment="Center" Height="28" VerticalAlignment="Top"/>
+                <Label Content="Yelping Since:" Margin="10,76,194,0" VerticalContentAlignment="Center" Height="28" VerticalAlignment="Top"/>
+                <Label Content="Votes:" Margin="10,109,239,0" VerticalContentAlignment="Center" Width="41" Height="28" VerticalAlignment="Top"/>
+                <Label Content="Funny" Margin="76,109,169,0" VerticalContentAlignment="Center" Height="28" VerticalAlignment="Top"/>
+                <Label Content="Cool" Margin="161,109,93,0" VerticalContentAlignment="Center" Height="28" VerticalAlignment="Top"/>
+                <Label Content="Useful" Margin="235,109,11,0" VerticalContentAlignment="Center" Height="28" VerticalAlignment="Top"/>
+                <Label Content="Total Tip Likes:" Margin="10,209,194,0" VerticalContentAlignment="Center" Height="28" VerticalAlignment="Top"/>
+                <Label Content="Latitute" Margin="10,275,214,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="28" VerticalAlignment="Top"/>
+                <Label Content="Location:" Margin="10,242,219,0" VerticalContentAlignment="Center" Height="28" VerticalAlignment="Top"/>
+                <Label Content="Tip Count:" Margin="10,176,214,0" VerticalContentAlignment="Center" Height="28" VerticalAlignment="Top"/>
+                <Label Content="Longitude" Margin="10,308,214,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="28" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="28" Margin="61,10,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="219"/>
+                <TextBox x:Name="Stars" HorizontalAlignment="Left" Height="28" Margin="56,43,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="84" IsEnabled="False"/>
+                <TextBox x:Name="Fans" HorizontalAlignment="Left" Height="28" Margin="191,43,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="89" IsEnabled="False"/>
+                <TextBox x:Name="YelpingSince" HorizontalAlignment="Left" Height="28" Margin="101,76,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="179" IsEnabled="False"/>
+                <TextBox x:Name="FunnyVotes" HorizontalAlignment="Left" Height="29" Margin="76,142,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="45" IsEnabled="False"/>
+                <TextBox x:Name="UsefulVotes" HorizontalAlignment="Left" Height="29" Margin="234,142,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="45" IsEnabled="False"/>
+                <TextBox x:Name="CoolVotes" HorizontalAlignment="Left" Height="29" Margin="156,142,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="45" IsEnabled="False"/>
+                <TextBox x:Name="Name" HorizontalAlignment="Left" Height="28" Margin="61,10,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="219" IsEnabled="False"/>
+                <TextBox x:Name="TotalTipLikes" HorizontalAlignment="Left" Height="28" Margin="101,209,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="179" IsEnabled="False"/>
+                <TextBox x:Name="TipCount" HorizontalAlignment="Left" Height="28" Margin="81,176,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="199" IsEnabled="False"/>
+                <TextBox x:Name="Longitude" HorizontalAlignment="Left" Height="28" Margin="81,308,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="135" IsEnabled="False"/>
+                <TextBox x:Name="Latitude" HorizontalAlignment="Left" Height="28" Margin="81,275,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="135" IsEnabled="False"/>
+                <Button x:Name="UpdateUser" Content="Update" HorizontalAlignment="Left" Margin="221,308,0,0" VerticalAlignment="Top" Width="59" Height="28" Click="Update_Clicked"/>
+                <Button x:Name="EditUser" Content="Edit" HorizontalAlignment="Left" Margin="221,275,0,0" VerticalAlignment="Top" Width="59" Height="28" Click="Edit_Clicked"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Latest tips of my friend?" Margin="540,10,0,0" Height="626" VerticalAlignment="Top" HorizontalAlignment="Left" Width="696">
+            <Grid HorizontalAlignment="Right" Height="605" Margin="0,0,-2,-2" VerticalAlignment="Top" Width="686">
+                <DataGrid x:Name="FriendsTips" HorizontalAlignment="Left" Height="585" Margin="10,10,0,0" VerticalAlignment="Top" Width="666" IsReadOnly="True">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type TextBlock}" x:Key="WrapText">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Width="100" Binding ="{Binding Path=Name}"/>
+                        <DataGridTextColumn Header="Business Name" Width="155" Binding ="{Binding Path=Business}"/>
+                        <DataGridTextColumn Header="City" Width="90" Binding ="{Binding Path=City}"/>
+                        <DataGridTextColumn Header="Text" Width="195" Binding ="{Binding Path=Text}" ElementStyle="{StaticResource WrapText}"/>
+                        <DataGridTextColumn Header="Date" Width="120" Binding ="{Binding Path=TipDate}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Page>

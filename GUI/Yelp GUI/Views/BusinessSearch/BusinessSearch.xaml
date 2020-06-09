@@ -1,0 +1,117 @@
+﻿<Page x:Class="Yelp_GUI.Views.BusinessSearch"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Yelp_GUI.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="641" d:DesignWidth="1246"
+      Title="BusinessSearch">
+
+    <Grid Background="#FFE5E5E5">
+        <GroupBox Header="Select Location" HorizontalAlignment="Left" Height="190" Margin="10,10,0,0" VerticalAlignment="Top" Width="202">
+            <Grid HorizontalAlignment="Left" Margin="0,0,-2,-3" Width="192" Height="170" VerticalAlignment="Top">
+                <Label Content="State" Margin="10,9,96,0" VerticalContentAlignment="Center" Height="28" VerticalAlignment="Top"/>
+                <Label Content="Zipcode" Margin="10,97,76,0" VerticalContentAlignment="Center" Height="28" VerticalAlignment="Top"/>
+                <Label Content="City" Margin="10,37,101,0" VerticalContentAlignment="Center" Height="28" VerticalAlignment="Top"/>
+                <ComboBox x:Name="StateList" HorizontalAlignment="Left" Margin="51,10,0,0" VerticalAlignment="Top" Width="131" Height="27" SelectionChanged="SelectedStateChanged"/>
+                <ListBox x:Name="ZipcodeList" HorizontalAlignment="Left" Height="34" Margin="10,125,0,0" VerticalAlignment="Top" Width="172" SelectionChanged="SelectedZipcodeChanged"/>
+                <ListBox x:Name="CityList" HorizontalAlignment="Left" Height="32" Margin="10,65,0,0" VerticalAlignment="Top" Width="172" SelectionChanged="SelectedCityChanged"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Business Category" HorizontalAlignment="Left" Height="426" Margin="10,205,0,0" VerticalAlignment="Top" Width="202">
+            <Grid HorizontalAlignment="Left" Margin="0,0,-2,-2" Width="192" Height="405" VerticalAlignment="Top">
+                <ListBox x:Name="BusinessCategoriesList" HorizontalAlignment="Left" Height="253" Margin="10,10,0,0" VerticalAlignment="Top" Width="172"/>
+                <Button x:Name="RemoveBusinessCategoryButton" Content="Remove" HorizontalAlignment="Left" Margin="101,268,0,0" VerticalAlignment="Top" Width="81" Height="28" Click="RemoveBusinessCategory"/>
+                <Button x:Name="AddBusinessCategoryButton" Content="Add" HorizontalAlignment="Left" Margin="10,268,0,0" VerticalAlignment="Top" Width="81" Height="28" Click="AddBusinessCategory"/>
+                <ListBox x:Name="SelectedBusinessCategoriesList" HorizontalAlignment="Left" Height="61" Margin="10,301,0,0" VerticalAlignment="Top" Width="172"/>
+                <Button x:Name="SearchForBusinesses" Content="Search Business" HorizontalAlignment="Left" Margin="10,367,0,0" VerticalAlignment="Top" Width="172" Height="28" Click="Search"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Search Results" HorizontalAlignment="Left" Height="370" Margin="217,10,0,0" VerticalAlignment="Top" Width="710">
+            <Grid HorizontalAlignment="Left" Height="350" Margin="0,0,-2,-3" VerticalAlignment="Top" Width="700">
+                <DataGrid x:Name="SearchResults" HorizontalAlignment="Left" Height="330" Margin="10,10,0,0" VerticalAlignment="Top" Width="680" CanUserSortColumns="False" CanUserReorderColumns="False" SelectionMode="Single" CanUserResizeRows="False" SelectionChanged="BusinessRowSelected" IsReadOnly="True">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type TextBlock}" x:Key="WrapText">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Business Name" Width="95" Binding ="{Binding Path=BusinessName}"/>
+                        <DataGridTextColumn Header="Address" Width="125" Binding ="{Binding Path=Address}"/>
+                        <DataGridTextColumn Header="City" Width="60" Binding ="{Binding Path=City}"/>
+                        <DataGridTextColumn Header="State" Width="36" Binding ="{Binding Path=State}"/>
+                        <DataGridTextColumn Header="Distance (Miles)" Width="95" Binding ="{Binding Path=Distance}"/>
+                        <DataGridTextColumn Header="Stars" Width="35" Binding ="{Binding Path=Stars}"/>
+                        <DataGridTextColumn Header="Number of Tips" Width="95" Binding ="{Binding Path=NumTips}"/>
+                        <DataGridTextColumn Header="Number of Checkins" Width="120" Binding ="{Binding Path=NumCheckIns}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Filter by Price:" HorizontalAlignment="Left" Height="55" Margin="932,10,0,0" VerticalAlignment="Top" Width="304">
+            <Grid HorizontalAlignment="Left" Height="40" Margin="0,0,-2,-3" VerticalAlignment="Top" Width="294">
+                <CheckBox x:Name="SingleDollar" Content="$" HorizontalAlignment="Left" Margin="60,10,0,0" VerticalAlignment="Top" Checked="SingleDollarChecked" Unchecked="SingleDollarUnchecked"/>
+                <CheckBox x:Name="DoubleDollar" Content="$$" HorizontalAlignment="Left" Margin="91,10,0,0" VerticalAlignment="Top" Checked="DoubleDollarChecked" Unchecked="DoubleDollarUnchecked"/>
+                <CheckBox x:Name="TripleDollar" Content="$$$" HorizontalAlignment="Left" Margin="129,10,0,0" VerticalAlignment="Top" Checked="TripleDollarChecked" Unchecked="TripleDollarUnchecked"/>
+                <CheckBox x:Name="QuadrupleDollar" Content="$$$$" HorizontalAlignment="Left" Margin="173,10,0,0" VerticalAlignment="Top" Checked="QuadrupleDollarChecked" Unchecked="QuadrupleDollarUnchecked"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Filter by Attributes" HorizontalAlignment="Left" Height="235" Margin="932,70,0,0" VerticalAlignment="Top" Width="180">
+            <Grid HorizontalAlignment="Left" Height="215" VerticalAlignment="Top" Width="174" Margin="0,0,-2,0">
+                <CheckBox Content="Accepts Credit Cards" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="AcceptsCreditCardChecked" Unchecked="AcceptsCreditCardsUnchecked"/>
+                <CheckBox Content="Takes Reservations" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Checked="TakesReservationsChecked" Unchecked="TakeReservsationsUnchecked"/>
+                <CheckBox Content="Wheelchair Accessible" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Checked="WheelchairAccessibleChecked" Unchecked="WheelchairAccessibleUnchecked"/>
+                <CheckBox Content="Outdoor Seating" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Checked="OutdoorSeatingChecked" Unchecked="OutdoorSeatingUnchecked"/>
+                <CheckBox Content="Good for Kids" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Checked="GoodForKidsChecked" Unchecked="GoodForKidsUnchecked"/>
+                <CheckBox Content="Good for Groups" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" Checked="GoodForGroupsChecked" Unchecked="GoodForGroupsUnchecked"/>
+                <CheckBox Content="Delivery" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top" Checked="DeliveryChecked" Unchecked="DeliveryUnchecked"/>
+                <CheckBox Content="Take Out" HorizontalAlignment="Left" Margin="10,150,0,0" VerticalAlignment="Top" Checked="TakeOutChecked" Unchecked="TakeOutUnchecked"/>
+                <CheckBox Content="Free Wi-Fi" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" Checked="FreeWiFiChecked" Unchecked="FreeWifiUnchecked"/>
+                <CheckBox Content="Bike Parking" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top" Checked="BikeParkingChecked" Unchecked="BikeParkingUnchecked"/>
+            </Grid>
+        </GroupBox>
+
+
+        <GroupBox Header="Filter by Meal:" HorizontalAlignment="Left" Height="235" Margin="1117,70,0,0" VerticalAlignment="Top" Width="119">
+            <Grid HorizontalAlignment="Left" Height="210" Margin="0,0,-2,-3" VerticalAlignment="Top" Width="105">
+                <CheckBox Content="Breakfast" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="BreakfastChecked" Unchecked="BreakfastUnchecked"/>
+                <CheckBox Content="Lunch" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Checked="LunchChecked" Unchecked="LunchUnchecked"/>
+                <CheckBox Content="Brunch" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Checked="BrunchChecked" Unchecked="BrunchUnchecked"/>
+                <CheckBox Content="Dinner" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Checked="DinnerChecked" Unchecked="DinnerUnchecked"/>
+                <CheckBox Content="Dessert" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Checked="DessertChecked" Unchecked="DessertUnchecked"/>
+                <CheckBox Content="Late Night" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" Checked="LateNightChecked" Unchecked="LateNightUnchecked"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Sort Results By:" HorizontalAlignment="Left" Height="70" Margin="1020,310,0,0" VerticalAlignment="Top" Width="216">
+            <Grid HorizontalAlignment="Left" Height="50" Margin="10,0,-2,-3" VerticalAlignment="Top" Width="196">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="7*"/>
+                </Grid.RowDefinitions>
+                <ComboBox x:Name="SortResultsByComboBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="176" Height="27" SelectionChanged="SelectedSortingMethodChanged"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Selected Business:" HorizontalAlignment="Left" Height="246" Margin="217,385,0,0" VerticalAlignment="Top" Width="1019">
+            <Grid HorizontalAlignment="Left" Height="225" VerticalAlignment="Top" Width="1009" Margin="0,0,-2,-2">
+                <Label x:Name="BusinessNameTextBox" Content="Business Name" Margin="10,10,345,0" VerticalContentAlignment="Center" Height="28" VerticalAlignment="Top"/>
+                <Label x:Name="BusinessAddressTextBox" Content="Address" Margin="10,43,345,0" VerticalContentAlignment="Center" Height="28" VerticalAlignment="Top"/>
+                <Label x:Name="BusinessHoursTextBox" Content="Today: Opens / Closes" Margin="10,76,345,0" VerticalContentAlignment="Center" Height="28" VerticalAlignment="Top"/>
+                <Button x:Name="ShowTipsButton" Content="Show Tips" HorizontalAlignment="Left" Margin="669,10,0,0" VerticalAlignment="Top" Width="90" Height="48" Click="ShowTipsClicked"/>
+                <Button x:Name="ShowCheckinsButton" Content="Show Checkins" HorizontalAlignment="Left" Margin="669,63,0,0" VerticalAlignment="Top" Width="90" Height="48" Click="ShowCheckinsClicked"/>
+                <GroupBox Header="Business Categories" HorizontalAlignment="Left" Height="100" Margin="767,10,0,0" VerticalAlignment="Top" Width="232">
+                    <ListBox x:Name="SelectedBusinessCategoriesListBox" HorizontalAlignment="Left" Height="75" VerticalAlignment="Top" Width="223" Margin="0,2,0,0"/>
+
+                </GroupBox>
+                <GroupBox Header="Business Attributes" HorizontalAlignment="Left" Height="100" Margin="767,115,0,0" VerticalAlignment="Top" Width="232">
+                    <ListBox x:Name="SelectedBusinessAttributesListBox" HorizontalAlignment="Left" Height="75" VerticalAlignment="Top" Width="223" Margin="0,2,0,0"/>
+
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+        <Button Content="Show Map" HorizontalAlignment="Left" Margin="932,320,0,0" VerticalAlignment="Top" Width="83" Height="60" Click="MapButtonClicked"/>
+    </Grid>
+</Page>
